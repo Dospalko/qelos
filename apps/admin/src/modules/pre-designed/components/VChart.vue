@@ -1,5 +1,5 @@
 <script lang="ts">
-import { onBeforeMount, onMounted, onBeforeUnmount, shallowRef, ref } from 'vue';
+import { onBeforeMount, shallowRef, ref } from 'vue';
 import EditComponentBar from '@/modules/no-code/components/EditComponentBar.vue';
 
 export default {

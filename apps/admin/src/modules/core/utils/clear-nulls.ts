@@ -1,14 +1,32 @@
 export function clearNulls(obj) {
-  if (typeof obj !== 'object' || obj instanceof Array) {
+  if (!obj || typeof obj !== 'object' || Array.isArray(obj)) {
     return {};
   }
-  return Object.keys(obj).reduce((newObj, key) => {
-    const val = obj[key]
-    if (val !== null) {
-      newObj[key] = val
+
+  const keys = Object.keys(obj);
+  let hasNull = false;
+
+  // Fast path: check for nulls without cloning. Two passes but single keys allocation.
+  for (let i = 0; i < keys.length; i++) {
+    if (obj[keys[i]] === null) {
+      hasNull = true;
+      break;
     }
-    return newObj
-  }, {})
+  }
+
+  if (!hasNull) {
+    return obj;
+  }
+
+  const result = {};
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    const val = obj[key];
+    if (val !== null) {
+      result[key] = val;
+    }
+  }
+  return result;
 }
 
 
