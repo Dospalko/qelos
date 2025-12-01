@@ -7,10 +7,10 @@ services:
       - "6379:6379"
     restart: always
   admin:
-    image: ghcr.io/qelos-io/qelos/admin:${ADMIN_PANEL_VERSION}
+    image: registry.github.com/qelos-io/qelos/admin:${ADMIN_PANEL_VERSION}
     restart: always
   assets:
-    image: ghcr.io/qelos-io/qelos/assets:${ASSETS_SERVICE_VERSION}
+    image: registry.github.com/qelos-io/qelos/assets:${ASSETS_SERVICE_VERSION}
     restart: always
     environment:
       MONGO_URI: ${ASSETS_MONGODB_URI}
@@ -27,7 +27,7 @@ services:
       - redis
       - secrets
   auth:
-    image: ghcr.io/qelos-io/qelos/auth:${AUTH_SERVICE_VERSION}
+    image: registry.github.com/qelos-io/qelos/auth:${AUTH_SERVICE_VERSION}
     restart: always
     environment:
       MONGO_URI: ${AUTH_MONGODB_URI}
@@ -46,7 +46,7 @@ services:
       - secrets
       - redis
   gateway:
-    image: ghcr.io/qelos-io/qelos/gateway:${GATEWAY_VERSION}
+    image: registry.github.com/qelos-io/qelos/gateway:${GATEWAY_VERSION}
     restart: always
     ports:
       - ${PORT}:3000
@@ -66,7 +66,7 @@ services:
       AI_SERVICE_URL: ai
       SHOW_LOGS: ${SHOW_LOGS}
   content:
-    image: ghcr.io/qelos-io/qelos/content:${CONTENT_SERVICE_VERSION}
+    image: registry.github.com/qelos-io/qelos/content:${CONTENT_SERVICE_VERSION}
     restart: always
     environment:
       MONGO_URI: ${CONTENT_MONGODB_URI}
@@ -78,7 +78,7 @@ services:
     depends_on:
       - redis
   secrets:
-    image: ghcr.io/qelos-io/qelos/secrets:${SECRETS_SERVICE_VERSION}
+    image: registry.github.com/qelos-io/qelos/secrets:${SECRETS_SERVICE_VERSION}
     restart: always
     environment:
       MONGO_URI: ${SECRETS_MONGODB_URI}
@@ -88,14 +88,14 @@ services:
       INTERNAL_SECRET: ${INTERNAL_SECRET}
       SHOW_LOGS: ${SHOW_LOGS}
   drafts:
-    image: ghcr.io/qelos-io/qelos/drafts:${DRAFTS_SERVICE_VERSION}
+    image: registry.github.com/qelos-io/qelos/drafts:${DRAFTS_SERVICE_VERSION}
     restart: always
     environment:
       MONGO_URI: ${DRAFTS_MONGODB_URI}
       IP: 0.0.0.0
       SHOW_LOGS: ${SHOW_LOGS}
   plugins:
-    image: ghcr.io/qelos-io/qelos/plugins:${PLUGINS_SERVICE_VERSION}
+    image: registry.github.com/qelos-io/qelos/plugins:${PLUGINS_SERVICE_VERSION}
     restart: always
     environment:
       MONGO_URI: ${PLUGINS_MONGODB_URI}
@@ -110,7 +110,7 @@ services:
     depends_on:
       - redis
   no-code:
-    image: ghcr.io/qelos-io/qelos/no-code:${NOCODE_SERVICE_VERSION}
+    image: registry.github.com/qelos-io/qelos/no-code:${NOCODE_SERVICE_VERSION}
     restart: always
     environment:
       MONGO_URI: ${NOCODE_MONGODB_URI}
@@ -126,7 +126,7 @@ services:
     depends_on:
       - redis
   ai:
-    image: ghcr.io/qelos-io/qelos/ai:latest
+    image: registry.github.com/qelos-io/qelos/ai:${AI_SERVICE_VERSION}
     restart: always
     environment:
       MONGO_URI: ${AI_MONGODB_URI}
